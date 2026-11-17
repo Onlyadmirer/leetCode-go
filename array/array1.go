@@ -83,3 +83,49 @@ func FindMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	return res
 
 }
+
+func MaxArea(height []int) int {
+
+	left := 0
+	right := len(height) - 1
+
+	maxArea := 0
+
+	for left < right {
+		width := right - left
+		h := min(height[right], height[left])
+
+		area := width * h
+
+		if maxArea < area {
+			maxArea = area
+		}
+
+		if height[left] < height[right] {
+			left++
+		} else {
+			right--
+		}
+
+	}
+	return maxArea
+
+}
+
+func LongestCommonPrefix(strs []string) string {
+	if len(strs) == 0 {
+		return ""
+	}
+
+	for i := 0; i < len(strs[0]); i++ {
+		for j := 1; j < len(strs); j++ {
+
+			if i >= len(strs[j]) || strs[0][i] != strs[j][i] {
+				return strs[0][:i]
+			}
+
+		}
+	}
+
+	return strs[0]
+}
